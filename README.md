@@ -56,21 +56,23 @@ I use it every day.
 
 Next.js 15, FastAPI, Supabase, OpenAI API.
 
-## formulation-bo
+## formulation-bo / dcv-vision
 
-[Repository](https://github.com/mthogeon0731/formulation-bo)
-
-Bayesian optimization for formulation problems in a lab.
+Two libraries from one project. [formulation-bo](https://github.com/mthogeon0731/formulation-bo) · [dcv-vision](https://github.com/mthogeon0731/dcv-vision)
 
 We were optimizing a thermal interface material, alumina in PDMS. More filler means better thermal conductivity and worse viscosity, until the paste stops dispensing. Finding the balance properly takes dozens of samples. There were three of us and no budget for that.
 
-The tool fits a Gaussian Process to what we've measured, anchored to physical models (McLachlan GEM, Krieger-Dougherty), and suggests one experiment at a time. There's a demo that runs against a simulated system so you can try it without a lab.
+**formulation-bo** is the part that decides what to run next. It fits a Gaussian Process to what we've measured, anchored to physical models (McLachlan GEM, Krieger-Dougherty), and suggests one experiment at a time instead of a sweep. There's a demo that runs against a simulated system so you can try it without a lab.
 
-Python, scikit-learn, NumPy.
+**dcv-vision** exists because that loop needed a number it didn't have. How evenly the filler is dispersed matters as much as how much of it there is, and dispersion was something we were grading by eye off a micrograph — which doesn't reproduce between two people, or between the same person on two days. So: split the frame into a grid, measure particle coverage per cell, take the coefficient of variation. One photo in, one number out, the same number every time.
+
+Together they close the loop. Photograph the sample, get a dispersion figure, feed it back with the thermal and viscosity measurements, get the next formulation to try.
+
+Python, scikit-learn, NumPy, OpenCV, FastAPI.
 
 ## Stack
 
-Python, TypeScript, React Native / Expo, Next.js, FastAPI, Supabase, OpenAI API, scikit-learn.
+Python, TypeScript, React Native / Expo, Next.js, FastAPI, Supabase, OpenAI API, scikit-learn, OpenCV.
 
 Contact: mt.hogeon0731@gmail.com
 
@@ -130,20 +132,22 @@ React Native (Expo), Supabase.
 
 Next.js 15, FastAPI, Supabase, OpenAI API.
 
-## formulation-bo
+## formulation-bo / dcv-vision
 
-[저장소](https://github.com/mthogeon0731/formulation-bo)
-
-실험실 배합 최적화를 위한 베이지안 최적화 도구입니다.
+한 프로젝트에서 나온 두 개의 라이브러리입니다. [formulation-bo](https://github.com/mthogeon0731/formulation-bo) · [dcv-vision](https://github.com/mthogeon0731/dcv-vision)
 
 열전도 소재를 최적화하고 있었습니다. PDMS에 알루미나를 넣는 건데, 충전재를 늘리면 열전도도는 올라가고 점도도 같이 올라가서 어느 지점부터는 아예 도포가 안 됩니다. 제대로 균형점을 찾으려면 수십 번을 돌려야 합니다. 저희는 셋이었고 그럴 예산이 없었습니다.
 
-측정한 데이터에 가우시안 프로세스를 피팅하고, 물리 모델(McLachlan GEM, Krieger-Dougherty)을 사전 정보로 깔아서 다음에 할 실험 하나를 추천합니다. 가상 시스템으로 돌려볼 수 있는 데모가 들어 있어서 장비 없이도 확인할 수 있습니다.
+**formulation-bo**는 다음에 뭘 할지 정하는 쪽입니다. 측정한 데이터에 가우시안 프로세스를 피팅하고, 물리 모델(McLachlan GEM, Krieger-Dougherty)을 사전 정보로 깔아서 전수 조사 대신 다음에 할 실험 하나를 추천합니다. 가상 시스템으로 돌려볼 수 있는 데모가 들어 있어서 장비 없이도 확인할 수 있습니다.
 
-Python, scikit-learn, NumPy.
+**dcv-vision**은 그 루프에 없던 숫자가 필요해서 만들었습니다. 충전재가 얼마나 들어갔는지만큼 얼마나 고르게 퍼졌는지도 중요한데, 분산도는 현미경 사진을 눈으로 보고 판단하고 있었습니다. 두 사람이 보면 다르게 나오고, 같은 사람이 이틀에 걸쳐 봐도 다르게 나옵니다. 그래서 사진을 격자로 나누고, 칸마다 입자가 덮은 면적을 재고, 그 값들의 변동계수를 냅니다. 사진 하나 넣으면 숫자 하나가 나오고, 몇 번을 돌려도 같은 값이 나옵니다.
+
+둘을 붙이면 루프가 닫힙니다. 시료를 찍어서 분산도 수치를 얻고, 열전도도·점도 측정값과 함께 다시 넣으면 다음에 만들 배합이 나옵니다.
+
+Python, scikit-learn, NumPy, OpenCV, FastAPI.
 
 ## 사용 기술
 
-Python, TypeScript, React Native / Expo, Next.js, FastAPI, Supabase, OpenAI API, scikit-learn.
+Python, TypeScript, React Native / Expo, Next.js, FastAPI, Supabase, OpenAI API, scikit-learn, OpenCV.
 
 연락: mt.hogeon0731@gmail.com
