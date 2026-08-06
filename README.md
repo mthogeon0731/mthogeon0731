@@ -10,7 +10,7 @@ I don't have a CS background. Most of what's here started because I needed the t
 
 ## CLOCK OUT.exe
 
-iOS, [App Store](https://apps.apple.com/kr/app/%ED%87%B4%EA%B7%BC/id6768991274)
+iOS, [App Store](https://apps.apple.com/kr/app/%ED%87%B4%EA%B7%BC/id6768991274) · [Repository](https://github.com/mthogeon0731/CLOCK-OUT)
 
 Everyone using the app shares a single counter. Press the button, the number goes up. Time zones keep it moving around the clock — Asia sleeps, Europe picks it up, the Americas take over in the morning. Whoever pushes it to 100% triggers a forced blue screen on every connected device and the count resets.
 
@@ -18,11 +18,13 @@ There's a megaphone that broadcasts a message to every user at once. Handing a w
 
 The UI is Windows 95 on purpose.
 
+The repository is a showcase rather than the full app. It documents three things: the moderation pipeline, what a single globally shared counter does to a database row, and an authorization design I got wrong the first time and had to rebuild.
+
 React Native (Expo), Supabase Realtime, RevenueCat, OpenAI API.
 
 ## PODO
 
-iOS, [App Store](https://apps.apple.com/kr/app/podo/id6768158603)
+iOS, [App Store](https://apps.apple.com/kr/app/podo/id6768158603) · [Repository](https://github.com/mthogeon0731/PODO)
 
 Group scheduling. Everyone marks the times they're free and the app shows where the overlap is. There's also candidate-date voting for when you already have a few dates in mind.
 
@@ -34,7 +36,7 @@ React Native (Expo), Supabase.
 
 ## SYNC
 
-Not released. Running on a live server with one user, me.
+Not released. Running on a live server with one user, me. [Repository](https://github.com/mthogeon0731/SYNC)
 
 A calendar that accumulates a picture of how you work. Every action — adding an event, marking it done, rating it, dragging it somewhere else — gets distilled in a background task into a long-term memory record. That record goes into the system prompt on the next AI call.
 
@@ -80,9 +82,9 @@ Contact: mt.hogeon0731@gmail.com
 
 전공은 공과대학 화공생명공학과입니다. 여기 있는 것들은 대부분 스스로 필요해서 개발을 시작했습니다.
 
-## 퇴근 (OffWork.exe)
+## 퇴근 (CLOCK OUT.exe)
 
-iOS, [App Store](https://apps.apple.com/kr/app/%ED%87%B4%EA%B7%BC/id6768991274)
+iOS, [App Store](https://apps.apple.com/kr/app/%ED%87%B4%EA%B7%BC/id6768991274) · [저장소](https://github.com/mthogeon0731/CLOCK-OUT)
 
 전 세계 사용자가 카운터 하나를 공유합니다. 버튼을 누르면 숫자가 올라갑니다. 시차 덕분에 24시간 멈추지 않습니다. 아시아가 잠들면 유럽이, 유럽이 지치면 미주가 이어받습니다. 100%를 채운 사람이 나오면 접속 중인 모든 화면에 블루스크린이 뜨고 숫자는 0으로 돌아갑니다.
 
@@ -90,11 +92,13 @@ iOS, [App Store](https://apps.apple.com/kr/app/%ED%87%B4%EA%B7%BC/id6768991274)
 
 UI가 윈도우 95인 건 의도한 겁니다.
 
+저장소는 앱 전체가 아니라 쇼케이스입니다. 세 가지를 기록했습니다. 검열 파이프라인, 전 세계가 공유하는 카운터 하나가 DB 행에 무슨 일을 하는지, 그리고 처음에 잘못 만들어서 다시 세운 인가 구조.
+
 React Native (Expo), Supabase Realtime, RevenueCat, OpenAI API.
 
 ## PODO
 
-iOS, [App Store](https://apps.apple.com/kr/app/podo/id6768158603)
+iOS, [App Store](https://apps.apple.com/kr/app/podo/id6768158603) · [저장소](https://github.com/mthogeon0731/PODO)
 
 그룹 일정 조율 앱입니다. 각자 가능한 시간을 표시하면 겹치는 구간을 보여줍니다. 후보 날짜가 이미 있을 때는 O/X 투표로도 정할 수 있습니다.
 
@@ -106,7 +110,7 @@ React Native (Expo), Supabase.
 
 ## SYNC
 
-미출시. 실서버에서 돌아가고 있고 사용자는 저 한 명입니다.
+미출시. 실서버에서 돌아가고 있고 사용자는 저 한 명입니다. [저장소](https://github.com/mthogeon0731/SYNC)
 
 일하는 방식을 누적해서 파악하는 캘린더입니다. 일정을 넣거나, 완료를 체크하거나, 별점을 주거나, 다른 시간으로 옮길 때마다 백그라운드에서 그 데이터를 압축해 장기 기억으로 저장합니다. 저장된 기억은 다음 AI 호출의 시스템 프롬프트로 들어갑니다.
 
