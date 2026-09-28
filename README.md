@@ -2,7 +2,9 @@
 
 Chemical Biomolecular Engineering, Sogang University.
 
-I don't have a CS background. Most of what's here started because I needed the thing to exist.
+I study chemical and biomolecular engineering and build software around problems I run into, from coordinating schedules to deciding which materials experiment to run next.
+
+Currently active in the **inaugural cohort of OpenAI Student Collective in South Korea**, as one of **16 students selected nationwide**.
 
 [한국어](#한국어)
 
@@ -64,9 +66,13 @@ We were optimizing a thermal interface material, alumina in PDMS. More filler me
 
 **formulation-bo** is the part that decides what to run next. It fits a Gaussian Process to what we've measured, anchored to physical models (McLachlan GEM, Krieger-Dougherty), and suggests one experiment at a time instead of a sweep. There's a demo that runs against a simulated system so you can try it without a lab.
 
-**dcv-vision** exists because that loop needed a number it didn't have. How evenly the filler is dispersed matters as much as how much of it there is, and dispersion was something we were grading by eye off a micrograph — which doesn't reproduce between two people, or between the same person on two days. So: split the frame into a grid, measure particle coverage per cell, take the coefficient of variation. One photo in, one number out, the same number every time.
+**dcv-vision** turns a microscope image into a repeatable measure of spatial dispersion. I built it because judging filler distribution by eye gave us no consistent number to feed back into the experiment loop. It splits an image into an 8 × 8 grid and calculates **D_CV**, the coefficient of variation in coverage across the cells. Lower values mean more even coverage.
 
-Together they close the loop. Photograph the sample, get a dispersion figure, feed it back with the thermal and viscosity measurements, get the next formulation to try.
+In **v2**, you explicitly choose dark or bright particles, and global Otsu thresholding separates them from the background. The pipeline normalizes image scale when a supported scale bar is present. When particles cover more than half the image, it measures variation in the **voids** instead, so dense samples do not hide uneven empty regions. Results include the definition version and the phase measured; v1 and v2 values are not directly interchangeable.
+
+The core runs as a standalone Python function, with an optional local HTTP API and a synthetic demo. Measurements still depend on consistent imaging conditions and a sensible segmentation mask.
+
+The two libraries support the same experiment loop: measure dispersion from a sample image, combine it with thermal conductivity and viscosity measurements, and use those observations to guide the next formulation.
 
 Python, scikit-learn, NumPy, OpenCV, FastAPI.
 
@@ -82,7 +88,9 @@ Contact: mt.hogeon0731@gmail.com
 
 서강대학교 화공생명공학과.
 
-전공은 공과대학 화공생명공학과입니다. 여기 있는 것들은 대부분 스스로 필요해서 개발을 시작했습니다.
+화공생명공학을 공부하며 직접 마주친 문제를 해결하는 소프트웨어를 만듭니다. 함께 만날 시간을 정하는 일부터 다음 소재 실험을 설계하는 일까지, 대부분 스스로 필요해서 개발을 시작했습니다.
+
+대한민국에서 선발된 **16명 중 한 명으로 OpenAI Student Collective 1기에 참여해 활동하고 있습니다.**
 
 ## 퇴근 (CLOCK OUT.exe)
 
@@ -140,9 +148,13 @@ Next.js 15, FastAPI, Supabase, OpenAI API.
 
 **formulation-bo**는 다음에 뭘 할지 정하는 쪽입니다. 측정한 데이터에 가우시안 프로세스를 피팅하고, 물리 모델(McLachlan GEM, Krieger-Dougherty)을 사전 정보로 깔아서 전수 조사 대신 다음에 할 실험 하나를 추천합니다. 가상 시스템으로 돌려볼 수 있는 데모가 들어 있어서 장비 없이도 확인할 수 있습니다.
 
-**dcv-vision**은 그 루프에 없던 숫자가 필요해서 만들었습니다. 충전재가 얼마나 들어갔는지만큼 얼마나 고르게 퍼졌는지도 중요한데, 분산도는 현미경 사진을 눈으로 보고 판단하고 있었습니다. 두 사람이 보면 다르게 나오고, 같은 사람이 이틀에 걸쳐 봐도 다르게 나옵니다. 그래서 사진을 격자로 나누고, 칸마다 입자가 덮은 면적을 재고, 그 값들의 변동계수를 냅니다. 사진 하나 넣으면 숫자 하나가 나오고, 몇 번을 돌려도 같은 값이 나옵니다.
+**dcv-vision**은 현미경 사진에서 분산 상태를 반복 가능한 수치로 얻기 위해 만들었습니다. 충전재가 얼마나 고르게 퍼졌는지 눈으로만 판단하면 실험에 다시 넣을 일관된 값이 없었습니다. 사진을 8 × 8 격자로 나누고, 각 칸의 면적 비율이 얼마나 달라지는지 변동계수 **D_CV**로 계산합니다. 값이 낮을수록 공간적으로 더 고르게 분포한 상태입니다.
 
-둘을 붙이면 루프가 닫힙니다. 시료를 찍어서 분산도 수치를 얻고, 열전도도·점도 측정값과 함께 다시 넣으면 다음에 만들 배합이 나옵니다.
+**v2**에서는 입자가 배경보다 어두운지 밝은지 직접 지정하고, 전역 Otsu 임계값으로 입자와 배경을 분리합니다. 지원하는 스케일바가 있으면 이미지 축척을 정규화합니다. 입자가 화면의 절반을 넘는 고밀도 시료에서는 입자 대신 **빈 공간의 분포**로 편차를 계산해, 입자가 가득 찼다는 이유로 불균일한 빈 영역이 가려지지 않도록 했습니다. 결과에 지표 정의 버전과 계산에 사용한 상도 함께 반환하며, v1과 v2 수치는 그대로 섞어 비교하지 않습니다.
+
+독립적인 Python 함수로 사용할 수 있고, 선택적으로 로컬 HTTP API와 합성 이미지 데모를 제공합니다. 측정값을 해석할 때는 촬영 조건을 일정하게 유지하고, 입자가 제대로 분리됐는지 마스크를 확인해야 합니다.
+
+두 라이브러리는 같은 실험 흐름을 위한 도구입니다. 시료 사진에서 얻은 분산도와 열전도도·점도 측정값을 모아, 다음에 만들 배합을 정하는 데 활용합니다.
 
 Python, scikit-learn, NumPy, OpenCV, FastAPI.
 
@@ -151,3 +163,4 @@ Python, scikit-learn, NumPy, OpenCV, FastAPI.
 Python, TypeScript, React Native / Expo, Next.js, FastAPI, Supabase, OpenAI API, scikit-learn, OpenCV.
 
 연락: mt.hogeon0731@gmail.com
+
